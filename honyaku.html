@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>xml読み込み</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+    $(function (){
+        $.ajax({
+            url:'opendata.xml',
+            type:'GET',
+            dataType:'xml',
+            timeout: 1000,
+            error: function(e){
+                alert("ロード失敗");
+            },
+            success: function(xml){
+                
+            $(xml).find("Shelter").each(function(){
+                var that = this;
+                $("#sample ul").append('<li>'+this.children[0].textContent+("---")+this.children[1].textContent+this.children[2].textContent+'</li>');
+            });
+            }
+        });
+    });
+</script>
+</head>
+
+<body>
+    <h1>hello</h1>
+    <div id="sample">
+        <ul></ul>
+     </div>
+       
+</body>
+</html>
